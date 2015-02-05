@@ -27,11 +27,11 @@ module.exports = function(grunt) {
           }
       }
 
-      fs.writeFile('asset-hash-map.json', JSON.stringify(assetMap), function(err){
+      var mapFileName = opts.fileName || 'asset-hash-map.json';
+      fs.writeFile(mapFileName, JSON.stringify(assetMap), function(err){
           if(err) throw err;
-          grunt.log.writeln("Sucessfully wrote asset-hash-map.json");
+          grunt.log.writeln("Asst map written to '"+mapFileName+"' successfully");
           done();
       });
   });
-
 };
