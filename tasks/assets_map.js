@@ -15,10 +15,11 @@ module.exports = function(grunt) {
       var done = this.async();
       var opts = this.options();
       var hashedAssets = grunt.file.expand(opts.paths),
-          assetMap = {};
+          assetMap = {},
+          prefixPath = opts.prefixPath || "";
 
       for(var assetIndex in hashedAssets) {
-          var asset = hashedAssets[assetIndex].replace(opts.stripPath, "");
+          var asset = prefixPath+hashedAssets[assetIndex].replace(opts.stripPath, "");
           var splitAsset = asset.split('.');
           if(splitAsset.length >= 2) {
               splitAsset.splice(splitAsset.length-2, 1);
@@ -30,7 +31,7 @@ module.exports = function(grunt) {
       var mapFileName = opts.fileName || 'asset-hash-map.json';
       fs.writeFile(mapFileName, JSON.stringify(assetMap), function(err){
           if(err) throw err;
-          grunt.log.writeln("Asst map written to '"+mapFileName+"' successfully");
+          grunt.log.writeln("Asset map written to '"+mapFileName+"' successfully");
           done();
       });
   });
