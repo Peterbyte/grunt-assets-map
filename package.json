@@ -1,7 +1,7 @@
 {
   "name": "grunt-assets-map",
   "description": "Grunt task to create a map of assets to versioned/revisioned assets",
-  "version": "0.1.1",
+  "version": "0.1.22",
   "homepage": "https://github.com/Peterbyte/grunt-assets-map",
   "author": {
     "name": "Peter Bouquet",
