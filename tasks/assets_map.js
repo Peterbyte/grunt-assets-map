@@ -11,7 +11,7 @@
 var fs = require('fs');
 
 var _buildMap = function(grunt, opts){
-  var hashedAssets = grunt.file.expand(opts.paths),
+  var hashedAssets = grunt.file.expand(opts.src),
       assetMap = {},
       prefixPath = opts.prefixPath || "";
 
@@ -28,8 +28,10 @@ var _buildMap = function(grunt, opts){
 }
 
 module.exports = function(grunt) {
-  grunt.registerTask('assets_map', 'Creates a map of assets to versioned assets', function(){
-      var opts = this.options();
+
+  grunt.registerMultiTask('assets_map', 'Creates a map of assets to versioned assets', function(target){
+
+      var opts = this.options(this.data);
       var fileName = opts.fileName || 'asset-hash-map.json';
 
       if(!opts.async){
